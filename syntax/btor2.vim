@@ -2,24 +2,31 @@
 " " Language:     BTOR2
 " " Maintainer:   Florian Schrögendorfer <florian.schroegendorfer@gmail.com>
 
-" Quit if a syntax file is already loaded
+" quit if a syntax file is already loaded
 if exists("b:current_syntax")
   finish
 endif
 let b:current_syntax = "btor2"
 
-" Comments
-syntax match btor2Comment ";.*$"
+" comments
+syntax match btor2Comment "\v;.*$"
 
-" Sorts
-syntax keyword btor2Sort
+" symbol
+syntax match btor2Symbol "\v<\S+>" contained contains=
+      \ btor2StatePart,
+      \ btor2InputPart
+
+" numbers
+syntax match btor2Int "\v<-?\d+>" contained
+
+" sorts
+syntax keyword btor2Sort contained
       \ array
       \ bitvec
       \ sort
-" syntax match btor2Sort "[\^\~]"
 
-" Inputs
-syntax keyword btor2Input
+" inputs
+syntax keyword btor2Input contained
       \ input
       \ const
       \ constd
@@ -27,10 +34,9 @@ syntax keyword btor2Input
       \ one
       \ ones
       \ zero
-" syntax match btor2Input "!"
 
-" Sequential
-syntax keyword btor2Sequential
+" sequential
+syntax keyword btor2Sequential contained
       \ state
       \ init
       \ next
@@ -38,10 +44,9 @@ syntax keyword btor2Sequential
       \ constraint
       \ fair
       \ justice
-" syntax match btor2Sequential "!"
 
-" Operators
-syntax keyword btor2Operator
+" operators
+syntax keyword btor2Operator contained
       \ sext
       \ uext
       \ slice
@@ -95,34 +100,46 @@ syntax keyword btor2Operator
       \ read
       \ ite
       \ write
-" syntax match btor2Operator "\v(\d+\s+)@<="
-syntax match btor2Operator "!"
 
-" Identifier
-syntax match btor2Identifier "\v<(\d+\s+)@<=\p+>"
+" node id
+syntax match btor2NodeID "\v^<\d+>" contained
 
-" Number
-syntax match btor2Int "\v<-?\d+>"
-syntax match btor2Hex "\v<[0-9a-fA-F]+>"
-syntax match btor2Binary "\v<[01]+>"
+" node lines
+syntax match btor2Node "\v^\d+\s+(\w+\s+)+(\d+\s*)+(\w+)?" contains=
+      \ btor2Comment,
+      \ btor2NodeID,
+      \ btor2Symbol,
+      \ btor2Int,
+      \ btor2Sort,
+      \ btor2Input,
+      \ btor2Sequential,
+      \ btor2Operator
 
-" Message
-syntax match btor2Message "\v<^[\p\s]+&>"
+" witness's property
+syntax match btor2Property "\v^[bj]\d+"
 
-" Error
-syntax keyword btor2Error
-      \ error
-      \ boolector
-      \ btormc
+" witness's state part
+syntax match btor2StatePart "\v#\d+$"
+
+" witness's input part
+syntax match btor2InputPart "\v\@\d+$"
+
+" assignment lines
+syntax match btor2Assignment "\v^\d+(\[\d+\])?\s+\d+(\s+\S+)?" contains=
+      \ btor2NodeID,
+      \ btor2Symbol,
+      \ btor2Int,
+      \ btor2StatePart,
+      \ btor2InputPart
 
 highlight def link btor2Comment     Comment
+highlight def link btor2Symbol      Statement
+highlight def link btor2Int         Normal
 highlight def link btor2Sort        Type
 highlight def link btor2Input       Special
 highlight def link btor2Sequential  PreProc
 highlight def link btor2Operator    Identifier
-highlight def link btor2Identifier  Statement
-highlight def link btor2Hex         Normal
-highlight def link btor2Binary      Normal
-highlight def link btor2Int         Normal
-highlight def link btor2Message     Normal
-highlight def link btor2Error       Error
+highlight def link btor2NodeID      Constant
+highlight def link btor2Property    Todo
+highlight def link btor2StatePart   Underlined
+highlight def link btor2InputPart   Underlined

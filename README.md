@@ -3,7 +3,7 @@
 ## What is this?
 A VIM plugin that adds syntax highlighting for the **BTOR2** word-level model checking format, i.e. `*.btor2` files.
 
-The plugin also provides **shortcuts for evaluating the current file** using **[boolector](https://github.com/Boolector/boolector)**):
+The plugin also provides **shortcuts for evaluating the current file** using **[boolector](https://github.com/Boolector/boolector)**:
 * `<localleader>r` evaluates the current file (in a terminal)
 * `<localleader>R` evaluates the current file and puts the output in a new split with syntax highlighting
 
@@ -22,7 +22,7 @@ The plugin also provides **shortcuts for evaluating the current file** using **[
 
 Otherwise, you need to:
 * have `boolector` and `btormc` in your `$PATH`, **or**
-* set `g:btor2_solver_command` in your `~/.vimrc` to the command for calling `boolector` or `btormc` with arguments of your choice (e.g. `let g:btor2_solver_command="boolector -m"`)
+* set `g:btor2_boolector_command` and/or `g:btor2_btormc_command` in your `~/.vimrc` to the commands for calling `boolector` and `btormc` with arguments of your choice (e.g. `let g:btor2_boolector_command="boolector -m"`)
 
 ## FAQ
 > Why does VIM  not show any syntax highlighting - neither for `*.btor2` files nor for others?
