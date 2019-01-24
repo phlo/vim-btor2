@@ -15,8 +15,9 @@ if !exists("g:btor2_btormc_command")
 endif
 
 " mappings
-nnoremap <silent> <buffer> <localleader>r :call btor2#RunSolver()<cr>
-nnoremap <silent> <buffer> <localleader>R :call btor2#RunSolverAndShowResult()<cr>
+nnoremap <silent> <buffer> <localleader>e :call btor2#RunSolver()<cr>
+nnoremap <silent> <buffer> <localleader>E :call btor2#RunSolverAndShowResult()<cr>
+nnoremap <Leader>r :%s/\<<C-r><C-w>\>//g<Left><Left>
 
 " comment string
 setlocal commentstring=;%s

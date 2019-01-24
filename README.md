@@ -4,8 +4,9 @@
 A VIM plugin that adds syntax highlighting for the **BTOR2** word-level model checking format, i.e. `*.btor2` files.
 
 The plugin also provides **shortcuts for evaluating the current file** using **[boolector](https://github.com/Boolector/boolector)**:
-* `<localleader>r` evaluates the current file (in a terminal)
-* `<localleader>R` evaluates the current file and puts the output in a new split with syntax highlighting
+* `<localleader>e` evaluates the current file (in a terminal)
+* `<localleader>E` evaluates the current file and puts the output in a new split with syntax highlighting
+* `<localleader>r` replaces all occurrences of the word under the cursor
 
 *Note: Unless you've set `<localleader>` to a custom key, it is `\` (VIM default).*
 
