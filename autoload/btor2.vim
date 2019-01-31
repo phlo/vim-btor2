@@ -1,6 +1,6 @@
 " selects btormc for sequential formulas
 function! btor2#SelectSolver()
-  if search("\\v<(state|init|next|bad|constraint|fair|justice)>", "nw")
+  if search("\\v^\\d+\\s+<(state|init|next|bad|constraint|fair|justice)>", "nw")
     let g:btor2_solver_command = g:btor2_btormc_command
   else
     let g:btor2_solver_command = g:btor2_boolector_command
